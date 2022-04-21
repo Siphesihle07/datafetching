@@ -1,0 +1,54 @@
+<script>
+    function DisplayData(json){
+        var DataObj = json;
+        var Msg = "District name    Province\n";
+        var TheTable=document.getElementById("MyDataTable");
+        TheTable.innerHTML='<tr><th>District name</th><th>Province</th></tr>';
+        for(var i =0; i < DataObj.data.length; i++){
+            
+            Msg += DataObj.data[i].name+"       "+ DataObj.data[i].province.name+"\n";
+            TheTable.innerHTML+='<tr><td>'+DataObj.data[i].name+'</td><td>'+DataObj.data[i].province.name+'</td><tr>';
+               
+        }
+        return Msg;
+    }
+
+
+    var requestOptions = {
+  method: 'POST',
+  redirect: 'follow'
+};
+
+fetch("https://sfrs-j75dy.ondigitalocean.app/api/listDistricts", requestOptions)
+  .then(function (response){
+      return response.json();
+  })
+  .then(function (json){
+    console.log(DisplayData(json)) 
+  })
+  .catch(error => console.log('error', error));
+</script> 
+
+<html>
+    <body>
+        <head4>
+<b> KZNSC</b>
+         
+        </head4>
+        </body>
+        <div> 
+            <table id="MyDataTable">
+        
+            </table>
+        </div>
+        <style>
+
+        </style>
+        
+    </body>
+    <style>
+    
+
+        
+    </style>
+</html>
